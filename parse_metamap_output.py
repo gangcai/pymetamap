@@ -6,12 +6,12 @@ class OutputParser:
 
     #get the umls ids from metamap output file
     def extract_umls_id(self):
-        ids=[]
+        ids={}
         for line in open(self.input):
             if re.search("^Processing",line):
                 continue
             if re.search("^Meta Mapping",line):
                 continue
             id=line.split(":")[0].split()[-1]
-            ids.append(id)
-        return ids
+            ids[id]=0
+        return ids.keys()
